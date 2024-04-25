@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo</title>
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static',filename='styles/all.min.css') }}">
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static',filename='styles/photo.css') }}">
+</head>
+<body>
+    <!-- Star Header -->
+    <div class="wrapper">
+        <div class="side_bar">
+            <div class="side_bar_top">
+                <div class="profile_pic">
+                    <img src="../static/styles/images/logo.jpeg" alt="profile">
+                </div>
+                <div class="profile_info">
+                    <h3>Weather Classification</h3>
+                    <p>amgad.25009@gmail.com</p>
+                </div>
+            </div>
+            <div class="side_bar_bottom">
+                <ul>
+                    <li  method="['post', 'get']">
+                        <span class="top_curve"></span>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-home"></i></span>
+                            <span class="item">HOME</span></a>
+                        <span class="bottom_curve"></span>
+                    </li>
+                    <li>
+                        <span class="top_curve"></span>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-search"></i></span>
+                            <span class="item">SEARCH</span></a>
+                        <span class="bottom_curve"></span>
+                    </li>
+                    <li class="active">
+                        <span class="top_curve"></span>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-camera-retro"></i></span>
+                            <span class="item">PHOTO</span></a>
+                        <span class="bottom_curve"></span>
+                    </li>
+                    <li>
+                        <span class="top_curve"></span>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-cog"></i></span>
+                            <span class="item">SETTINGS</span></a>
+                        <span class="bottom_curve"></span>
+                    </li>
+                    <li method="['post', 'get']">
+                        <span class="top_curve"></span>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                            <span class="item">LOG OUT</span></a>
+                        <span class="bottom_curve"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- End header -->
+        <!-- Star content -->
+        <!-- Start Content -->
+        <div class="container frame">
+            <div class="row center">
+                <div class="upload-block">
+                    <form action="{{ url_for('predict')}}" method="post" enctype="multipart/form-data">
+                        <header>Drop image to upload</header>
+                        <div class="line"></div>
+                        <dl>
+                            <div class="centered">
+                                <img id="uploaded" class="hidden">
+                                <label htmlFor="file-download"       id="file-upload" class="centered" >
+                                    <div class="upload-icon"></div> 
+                                    <input type="file" name="file" class="hidden" autocomplete="off" required accept=".jpg, .jpeg, .png" 
+                                onChange="handleDownloadImages(event)"></input>
+                                </label>
+                            </div>
+                        </dl>
+                        <p>
+                            <div class="btn-block centered hidden">
+                                <div class="progress-bar">
+                                    <span></span>
+                                </div>
+                                <input type="submit" value="Done" class="btn btn-info" id="upload-btn">
+                            </div>
+                        </p>
+                    </form>
+                    <h6 class="st"> {{ prediction_text }} </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/styles/js/index.js"></script>
+</body>
+</html>
